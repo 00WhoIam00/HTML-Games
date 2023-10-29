@@ -1,29 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Include your CSS here -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Multiplayer Drawing App</title>
 </head>
 <body>
-    <h1>Rock, Paper, Scissors</h1>
-    <div class="game-container">
-        <div class="players">
-            <div class="player">
-                <h2>Player 1</h2>
-                <button class="choice" data-player="1">Rock</button>
-                <button class="choice" data-player="1">Paper</button>
-                <button class="choice" data-player="1">Scissors</button>
-            </div>
-            <div class="player">
-                <h2>Player 2</h2>
-                <button class="choice" data-player="2">Rock</button>
-                <button class="choice" data-player="2">Paper</button>
-                <button class="choice" data-player="2">Scissors</button>
-            </div>
-        </div>
-        <div class="result">
-            <p>Make your choices!</p>
-        </div>
+    <div class="nickname-container">
+        <label for="nickname">Enter your nickname:</label>
+        <input type="text" id="nickname" placeholder="Your Nickname">
+        <button id="play-button">Play</button>
     </div>
-    <script src="client.js"></script>
+    <div class="canvas-container">
+        <canvas id="drawing-canvas"></canvas>
+    </div>
+    <div class="drawing-tools">
+        <button id="clear-button">Clear</button>
+        <button id="eraser-button">Eraser</button>
+        <button id="pencil-button">Pencil</button>
+        <input type="color" id="color-picker" value="#000000">
+    </div>
+    <div class="chat-container">
+        <div id="chat-log"></div>
+        <input type="text" id="chat-input" placeholder="Type your message">
+        <button id="send-button">Send</button>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
