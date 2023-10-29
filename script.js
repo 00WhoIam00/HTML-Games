@@ -1,6 +1,7 @@
 const gameContainer = document.querySelector('.game-container');
 const snake = document.getElementById('snake');
 const food = document.getElementById('food');
+const scoreElement = document.getElementById('score');
 
 let snakeX = 0;
 let snakeY = 0;
@@ -18,6 +19,7 @@ function update() {
     if (snakeX === foodX && snakeY === foodY) {
         score++;
         spawnFood();
+        growSnake();
     } else {
         snakeBody.pop();
     }
@@ -36,6 +38,7 @@ function update() {
     }
 
     render();
+    scoreElement.innerHTML = 'Score: ' + score;
     setTimeout(update, 100);
 }
 
@@ -68,6 +71,11 @@ function checkCollision() {
     }
 
     return false;
+}
+
+function growSnake() {
+    const newSegment = { x: snakeX, y: snakeY };
+    snakeBody.push(newSegment);
 }
 
 document.addEventListener('keydown', (event) => {
