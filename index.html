@@ -5,7 +5,8 @@
 </head>
 <body>
     <div id="nickname-container" class="centered">
-        <input type="text" id="nickname" placeholder="Enter your nickname">
+        <h2>Enter your nickname</h2>
+        <input type="text" id="nickname" placeholder="Nickname">
         <button id="play">Play</button>
     </div>
     <div id="canvas-container" class="canvas-container">
@@ -13,8 +14,8 @@
     </div>
     <div id="chat-container" class="chat-container chat">
         <div id="chat-messages"></div>
-        <input type="text" id="message-input" placeholder="Type your message">
-        <button id="send-message">Send</button>
+        <input type="text" id="message-input" placeholder="Type your message" disabled>
+        <button id="send-message" disabled>Send</button>
     </div>
     <div id="player-list-container" class="player-list-container player-list">
         <h3>Player List</h3>
@@ -22,9 +23,9 @@
     </div>
     <div id="drawing-toolbar" class="drawing-toolbar">
         <button id="clear">Clear</button>
-        <button id="eraser">Eraser</button>
-        <button id="pencil">Pencil</button>
-        <input type="color" id="color">
+        <button id="eraser" disabled>Eraser</button>
+        <button id="pencil" disabled>Pencil</button>
+        <input type="color" id="color" disabled>
     </div>
 </body>
 <script src="script.js"></script>
