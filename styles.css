@@ -26,6 +26,8 @@ body {
     align-items: center;
     position: relative;
     background-color: #ffffff;
+    max-height: 70vh; /* Adjust the max-height to your preference */
+    overflow: auto;  /* Add scrolling for tools */
 }
 
 .chat-container {
