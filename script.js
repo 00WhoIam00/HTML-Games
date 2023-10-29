@@ -19,7 +19,7 @@ playButton.addEventListener("click", () => {
     const nickname = nicknameInput.value;
     if (nickname) {
         nicknameContainer.style.display = "none";
-        canvasContainer.style.display = "block";
+        canvasContainer.style.display = "block"; // Display the canvas container
     }
 });
 
