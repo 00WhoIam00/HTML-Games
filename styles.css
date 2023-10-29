@@ -19,6 +19,7 @@ body {
     width: 10px;
     height: 10px;
     background-color: #00f;
+    display: block;
 }
 
 .food {
@@ -26,6 +27,7 @@ body {
     width: 10px;
     height: 10px;
     background-color: #f00;
+    display: block;
 }
 
 #score {
