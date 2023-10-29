@@ -1,28 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snake Game</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Classic Snake Game</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-    <div id="loginContainer">
-        <h2>Enter Your Nickname</h2>
-        <input type="text" id="nickname" />
-        <button onclick="startGame()">Login</button>
+    <div class="game-container">
+        <div id="snake" class="snake"></div>
+        <div id="food" class="food"></div>
     </div>
-
-    <div id="lobbyContainer" style="display:none;">
-        <h2>Waiting for game to start...</h2>
-        <div id="countdown">10</div>
-    </div>
-
-    <div id="gameContainer" style="display:none;">
-        <div id="score">Score: 0</div>
-        <canvas id="gameCanvas" width="400" height="400"></canvas>
-    </div>
-
     <script src="script.js"></script>
 </body>
 </html>
