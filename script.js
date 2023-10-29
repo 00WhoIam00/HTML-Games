@@ -1,37 +1,36 @@
-const gameContainer = document.getElementById("game-container");
-const lobby = document.getElementById("lobby");
-const nicknameInput = document.getElementById("nickname");
-const joinLobbyButton = document.getElementById("join-lobby");
-
-let players = []; // Store player data
-let isGameRunning = false;
-
-joinLobbyButton.addEventListener("click", () => {
-    const nickname = nicknameInput.value;
-    if (nickname.trim() !== "") {
-        joinLobby(nickname);
-    }
-});
-
-function joinLobby(nickname) {
-    // Implement lobby logic here
-    lobby.style.display = "none";
-    // Start the countdown timer for the lobby
-    // If enough players are present, start the game
-}
+let nickname;
+let countdownInterval;
 
 function startGame() {
-    // Initialize and start the game
-    isGameRunning = true;
-    // Implement game mechanics here
+    nickname = document.getElementById("nickname").value;
+    document.getElementById("loginContainer").style.display = "none";
+    document.getElementById("lobbyContainer").style.display = "block";
+    startCountdown();
 }
 
-function handlePlayerMovement() {
-    // Handle player movement logic
+function startCountdown() {
+    let countdown = 10;
+    countdownInterval = setInterval(() => {
+        document.getElementById("countdown").innerText = countdown;
+        if (countdown === 0) {
+            clearInterval(countdownInterval);
+            startGameplay();
+        }
+        countdown--;
+    }, 1000);
 }
 
-// Implement game mechanics, collision detection, and multiplayer communication here
+function startGameplay() {
+    document.getElementById("lobbyContainer").style.display = "none";
+    document.getElementById("gameContainer").style.display = "block";
 
-// WebSocket or server communication is required for multiplayer functionality
+    // Initialize game logic here (snake movement, collision, point generation, etc.)
+    // Use canvas for rendering the game.
+}
 
-// This is a very basic and incomplete example to get you started.
+function updateScore(score) {
+    document.getElementById("score").innerText = `Score: ${score}`;
+}
+
+// Add game logic here...
+
