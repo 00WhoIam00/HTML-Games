@@ -85,14 +85,18 @@ sendMessageButton.addEventListener("click", () => {
     if (playerEntered) {
         const message = messageInput.value;
         if (message) {
-            // For demonstration, add the message to the chat container.
+            // Replace "Nickname" with the player's actual nickname in the message
+            const formattedMessage = `${nicknameInput.value}: ${message}`;
+            // For demonstration, add the formatted message to the chat container.
             const messageElement = document.createElement("p");
-            messageElement.textContent = `Nickname: ${message}`;
+            messageElement.textContent = formattedMessage;
+            messageElement.classList.add("chat-message"); // Apply styling to the chat message
             chatMessages.appendChild(messageElement);
             messageInput.value = ''; // Clear the input field
         }
     }
 });
+
 
 // Function to enable drawing and chat controls
 function enableControls() {
