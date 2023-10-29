@@ -12,27 +12,21 @@ body {
     width: 300px;
     height: 300px;
     border: 2px solid #000;
+    display: grid;
+    grid-template-columns: repeat(30, 10px);
+    grid-template-rows: repeat(30, 10px);
 }
 
 .snake {
-    position: absolute;
-    width: 10px;
-    height: 10px;
     background-color: #00f;
-    display: block;
 }
 
 .food {
-    position: absolute;
-    width: 10px;
-    height: 10px;
     background-color: #f00;
-    display: block;
 }
 
 #score {
     text-align: center;
-    margin-top: 10px;
     font-size: 20px;
     font-weight: bold;
 }
