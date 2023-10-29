@@ -38,7 +38,11 @@ body {
     padding: 10px;
     display: flex;
     flex-direction: column;
-    overflow-y: auto; /* Add a scrollbar when the chat overflows */
+}
+
+.chat-messages {
+    flex-grow: 1;
+    overflow-y: auto;
 }
 
 .chat-container h3 {
@@ -59,10 +63,13 @@ body {
     padding: 10px;
 }
 
-.drawing-toolbar {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
+.message-input-container {
+    display: flex;
+}
+
+input[type="text"] {
+    flex-grow: 1;
+    margin-right: 5px;
 }
 
 button {
@@ -72,28 +79,9 @@ button {
     border-radius: 5px;
     padding: 5px 10px;
     cursor: pointer;
-    margin: 5px;
     font-weight: bold;
-}
-
-button:hover {
-    background-color: #0056b3;
 }
 
 input[type="color"] {
     margin: 5px;
-}
-
-#chat-messages {
-    flex-grow: 1;
-    overflow-y: auto; /* Add a scrollbar when the chat messages overflow */
-}
-
-/* Styling for chat messages */
-.chat-message {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    padding: 5px;
-    margin: 5px;
-    border-radius: 5px;
 }
