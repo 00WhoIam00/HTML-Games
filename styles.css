@@ -1,92 +1,23 @@
 body {
+    text-align: center;
     margin: 0;
     padding: 0;
-    overflow: hidden;
 }
 
-.nickname-container {
-    text-align: center;
-    padding: 20px;
+#nickname-container {
+    margin-top: 20px;
 }
 
-.nickname-container label {
-    font-size: 18px;
+#canvas-container {
+    margin-top: 20px;
 }
 
-.nickname-container input {
-    padding: 10px;
-    font-size: 16px;
-    margin: 10px;
-    border: 1px solid #ccc;
+#drawing-toolbar {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
 }
 
-.nickname-container button {
-    padding: 10px 20px;
-    font-size: 18px;
-    background-color: #0074D9;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-.canvas-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #f7f7f7;
-}
-
-.drawing-tools {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-}
-
-.drawing-tools button {
-    padding: 10px 20px;
-    font-size: 16px;
-    margin: 5px;
-    background-color: #0074D9;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-.drawing-tools input[type="color"] {
-    margin: 5px;
-}
-
-.chat-container {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    width: 250px;
-}
-
-#chat-log {
-    height: 200px;
-    overflow-y: scroll;
-    border: 1px solid #ccc;
-    padding: 10px;
-}
-
-#chat-input {
-    padding: 5px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-}
-
-#send-button {
-    padding: 5px 10px;
-    font-size: 16px;
-    background-color: #0074D9;
-    color: white;
-    border: none;
-    cursor: pointer;
+canvas {
+    border: 1px solid #000;
 }
