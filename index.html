@@ -4,20 +4,30 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
+    <div id="nickname-container" class="centered">
+        <h2>Enter your nickname</h2>
+        <input type="text" id="nickname" placeholder="Nickname">
+        <button id="play">Play</button>
+    </div>
     <div id="canvas-container" class="canvas-container">
         <canvas id="drawing-canvas"></canvas>
     </div>
     <div id="chat-container" class="chat-container chat">
-        <h3>Chat</h3>
-        <div id="chat-messages" class="scrolling-chat"></div>
-        <div id="chat-input">
+        <div id="chat-messages" class="chat-messages"></div>
+        <div class="message-input-container">
             <input type="text" id="message-input" placeholder="Type your message" disabled>
             <button id="send-message" disabled>Send</button>
         </div>
     </div>
     <div id="player-list-container" class="player-list-container player-list">
         <h3>Player List</h3>
-        <div id="player-list" class="scrolling-list"></div>
+        <ul id="player-list"></ul>
+    </div>
+    <div id="drawing-toolbar" class="drawing-toolbar">
+        <button id="clear">Clear</button>
+        <button id="eraser" disabled>Eraser</button>
+        <button id="pencil" disabled>Pencil</button>
+        <input type="color" id="color" disabled>
     </div>
 </body>
 <script src="script.js"></script>
