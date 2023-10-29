@@ -1,74 +1,79 @@
-const canvas = document.getElementById("drawing-canvas");
-const context = canvas.getContext("2d");
+// Get DOM elements
+const nicknameContainer = document.getElementById("nickname-container");
+const canvasContainer = document.getElementById("canvas-container");
+const drawingCanvas = document.getElementById("drawing-canvas");
+const playButton = document.getElementById("play");
+const clearButton = document.getElementById("clear");
+const eraserButton = document.getElementById("eraser");
+const pencilButton = document.getElementById("pencil");
+const colorPicker = document.getElementById("color");
+const nicknameInput = document.getElementById("nickname");
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+// Initialize drawing context
+const ctx = drawingCanvas.getContext("2d");
+let isDrawing = false;
+let isEraser = false;
 
-let drawing = false;
-let erasing = false;
-let currentColor = "#000000";
+// Set up WebSocket for real-time communication with the server
+const socket = new WebSocket("ws://your-server-address");
 
-// Add event listeners for drawing
-canvas.addEventListener("mousedown", () => {
-    drawing = true;
-});
-
-canvas.addEventListener("mouseup", () => {
-    drawing = false;
-    context.beginPath();
-});
-
-canvas.addEventListener("mousemove", draw);
-
-// Function to handle drawing
-function draw(e) {
-    if (!drawing) return;
-
-    context.lineWidth = erasing ? 20 : 2;
-    context.lineCap = "round";
-    context.strokeStyle = currentColor;
-
-    context.lineTo(e.clientX, e.clientY);
-    context.stroke();
-    context.beginPath();
-    context.moveTo(e.clientX, e.clientY);
-}
-
-// Clear the canvas
-const clearButton = document.getElementById("clear-button");
-clearButton.addEventListener("click", () => {
-    context.clearRect(0, 0, canvas.width, canvas.height);
-});
-
-// Toggle eraser
-const eraserButton = document.getElementById("eraser-button");
-eraserButton.addEventListener("click", () => {
-    erasing = !erasing;
-});
-
-// Change tool to pencil
-const pencilButton = document.getElementById("pencil-button");
-pencilButton.addEventListener("click", () => {
-    erasing = false;
-});
-
-// Change color
-const colorPicker = document.getElementById("color-picker");
-colorPicker.addEventListener("input", (e) => {
-    currentColor = e.target.value;
-});
-
-// Handle chat (you'll need to implement this part)
-const chatLog = document.getElementById("chat-log");
-const chatInput = document.getElementById("chat-input");
-const sendButton = document.getElementById("send-button");
-
-sendButton.addEventListener("click", () => {
-    // Handle sending chat messages
-});
-
-// Hide nickname input and show canvas when "Play" is clicked (you'll need to implement this part)
-const playButton = document.getElementById("play-button");
+// Event listeners
 playButton.addEventListener("click", () => {
-    // Handle switching between nickname input and canvas
+    const nickname = nicknameInput.value;
+    nicknameContainer.style.display = "none";
+    canvasContainer.style.display = "block";
+    // Send the nickname to the server
+    socket.send(`Nickname: ${nickname}`);
+});
+
+clearButton.addEventListener("click", () => {
+    ctx.clearRect(0, 0, drawingCanvas.width, drawingCanvas.height);
+});
+
+eraserButton.addEventListener("click", () => {
+    isEraser = true;
+    drawingCanvas.style.cursor = "crosshair";
+});
+
+pencilButton.addEventListener("click", () => {
+    isEraser = false;
+    drawingCanvas.style.cursor = "auto";
+});
+
+colorPicker.addEventListener("input", (event) => {
+    ctx.strokeStyle = event.target.value;
+});
+
+drawingCanvas.addEventListener("mousedown", (event) => {
+    isDrawing = true;
+    ctx.beginPath();
+    ctx.moveTo(event.clientX, event.clientY);
+});
+
+drawingCanvas.addEventListener("mousemove", (event) => {
+    if (isDrawing) {
+        if (isEraser) {
+            ctx.globalCompositeOperation = "destination-out"; // for erasing
+            ctx.lineWidth = 10; // set eraser size
+        } else {
+            ctx.globalCompositeOperation = "source-over";
+            ctx.lineWidth = 2; // set pencil size
+        }
+        ctx.lineTo(event.clientX, event.clientY);
+        ctx.stroke();
+    }
+});
+
+drawingCanvas.addEventListener("mouseup", () => {
+    isDrawing = false;
+});
+
+// WebSocket message handler
+socket.addEventListener("message", (event) => {
+    const message = event.data;
+    if (message.startsWith("Draw:")) {
+        // Handle drawing data received from other users
+        const drawingData = message.split(":")[1];
+        // Parse and draw the received data on your canvas
+    }
 });
