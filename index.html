@@ -1,25 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplayer Snake Game</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="login">
-        <h1>Snake Game</h1>
+    <div id="game-container">
+        <!-- The game board will go here -->
+    </div>
+    <div id="lobby">
         <input type="text" id="nickname" placeholder="Enter your nickname">
-        <button onclick="joinLobby()">Join Lobby</button>
+        <button id="join-lobby">Join Lobby</button>
     </div>
-
-    <div id="lobby" class="hidden">
-        <h2>Lobby</h2>
-        <p id="lobby-message">Waiting for players...</p>
-        <button id="start-button" onclick="startGame()" disabled>Start</button>
-    </div>
-
-    <div id="game" class="hidden">
-        <!-- Snake game canvas goes here -->
-    </div>
-
-    <script src="game.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
