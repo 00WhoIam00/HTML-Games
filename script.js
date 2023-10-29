@@ -21,6 +21,18 @@ let isDrawing = false;
 let isEraser = false;
 let playerEntered = false; // Flag to track if the player has entered a nickname
 
+// Resize the canvas to fit the user's screen
+function resizeCanvas() {
+    drawingCanvas.width = window.innerWidth;
+    drawingCanvas.height = window.innerHeight;
+}
+
+// Attach the resizeCanvas function to the window's resize event
+window.addEventListener("resize", resizeCanvas);
+
+// Call the resizeCanvas function to initialize the canvas size
+resizeCanvas();
+
 // Event listeners
 playButton.addEventListener("click", () => {
     if (!playerEntered) {
