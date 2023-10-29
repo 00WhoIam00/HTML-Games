@@ -1,5 +1,4 @@
 const gameContainer = document.querySelector('.game-container');
-const food = document.getElementById('food');
 const scoreElement = document.getElementById('score');
 
 let gridSize = 10;
@@ -34,6 +33,13 @@ function render() {
     // Clear the game container
     gameContainer.innerHTML = '';
 
+    // Render the food
+    const food = document.createElement('div');
+    food.className = 'food';
+    food.style.left = foodX + 'px';
+    food.style.top = foodY + 'px';
+    gameContainer.appendChild(food);
+
     // Render the snake
     snake.forEach((segment, index) => {
         const snakeSegment = document.createElement('div');
@@ -42,10 +48,6 @@ function render() {
         snakeSegment.style.top = segment.y + 'px';
         gameContainer.appendChild(snakeSegment);
     });
-
-    // Render the food
-    food.style.left = foodX + 'px';
-    food.style.top = foodY + 'px';
 }
 
 function spawnFood() {
