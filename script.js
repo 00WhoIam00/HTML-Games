@@ -14,16 +14,13 @@ const ctx = drawingCanvas.getContext("2d");
 let isDrawing = false;
 let isEraser = false;
 
-// Set up WebSocket for real-time communication with the server
-const socket = new WebSocket("ws://your-server-address");
-
 // Event listeners
 playButton.addEventListener("click", () => {
     const nickname = nicknameInput.value;
     nicknameContainer.style.display = "none";
     canvasContainer.style.display = "block";
-    // Send the nickname to the server
-    socket.send(`Nickname: ${nickname}`);
+    // Send the nickname to the server (you need to set up your server for this).
+    // For testing purposes, you can use console.log(nickname).
 });
 
 clearButton.addEventListener("click", () => {
@@ -66,14 +63,4 @@ drawingCanvas.addEventListener("mousemove", (event) => {
 
 drawingCanvas.addEventListener("mouseup", () => {
     isDrawing = false;
-});
-
-// WebSocket message handler
-socket.addEventListener("message", (event) => {
-    const message = event.data;
-    if (message.startsWith("Draw:")) {
-        // Handle drawing data received from other users
-        const drawingData = message.split(":")[1];
-        // Parse and draw the received data on your canvas
-    }
 });
