@@ -17,6 +17,7 @@ body {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-top: 10vh; /* Move it down by 10% of the viewport height */
 }
 
 .canvas-container {
