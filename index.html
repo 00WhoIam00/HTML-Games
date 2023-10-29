@@ -12,12 +12,15 @@
         <canvas id="drawing-canvas"></canvas>
     </div>
     <div id="chat-container" class="chat-container chat">
-        <!-- Chat content goes here -->
+        <div id="chat-messages"></div>
+        <input type="text" id="message-input" placeholder="Type your message">
+        <button id="send-message">Send</button>
     </div>
     <div id="player-list-container" class="player-list-container player-list">
-        <!-- Player list content goes here -->
+        <h3>Player List</h3>
+        <ul id="player-list"></ul>
     </div>
-    <div id="drawing-toolbar">
+    <div id="drawing-toolbar" class="drawing-toolbar">
         <button id="clear">Clear</button>
         <button id="eraser">Eraser</button>
         <button id="pencil">Pencil</button>
