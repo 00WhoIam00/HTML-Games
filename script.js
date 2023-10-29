@@ -20,8 +20,6 @@ playButton.addEventListener("click", () => {
     if (nickname) {
         nicknameContainer.style.display = "none";
         canvasContainer.style.display = "block";
-        // Send the nickname to the server (you need to set up your server for this).
-        // For testing purposes, you can use console.log(nickname).
     }
 });
 
@@ -41,24 +39,20 @@ pencilButton.addEventListener("click", () => {
 
 colorPicker.addEventListener("input", (event) => {
     ctx.strokeStyle = event.target.value;
+    ctx.fillStyle = event.target.value; // Set fill style for shapes
 });
 
 drawingCanvas.addEventListener("mousedown", (event) => {
     isDrawing = true;
     ctx.beginPath();
-    ctx.moveTo(event.clientX, event.clientY);
+    ctx.moveTo(event.clientX - drawingCanvas.getBoundingClientRect().left, event.clientY - drawingCanvas.getBoundingClientRect().top);
 });
 
 drawingCanvas.addEventListener("mousemove", (event) => {
     if (isDrawing) {
-        if (isEraser) {
-            ctx.globalCompositeOperation = "destination-out"; // for erasing
-            ctx.lineWidth = 10; // set eraser size
-        } else {
-            ctx.globalCompositeOperation = "source-over";
-            ctx.lineWidth = 2; // set pencil size
-        }
-        ctx.lineTo(event.clientX, event.clientY);
+        ctx.globalCompositeOperation = isEraser ? "destination-out" : "source-over";
+        ctx.lineWidth = 2;
+        ctx.lineTo(event.clientX - drawingCanvas.getBoundingClientRect().left, event.clientY - drawingCanvas.getBoundingClientRect().top);
         ctx.stroke();
     }
 });
