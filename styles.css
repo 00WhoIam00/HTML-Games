@@ -28,12 +28,18 @@ body {
     position: absolute;
     top: 10px;
     left: 10px;
-    width: 200px;
+    width: 250px;
     height: 300px;
     background: rgba(255, 255, 255, 0.9);
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-container h3 {
+    margin: 0;
 }
 
 .player-list-container {
@@ -46,4 +52,28 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     padding: 10px;
+}
+
+.drawing-toolbar {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+button {
+    background-color: #0074d9;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+input[type="color"] {
+    margin: 5px;
 }
