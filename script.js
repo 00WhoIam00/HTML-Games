@@ -1,5 +1,6 @@
 // Get DOM elements
 const nicknameContainer = document.getElementById("nickname-container");
+const overlay = document.getElementById("overlay");
 const canvasContainer = document.getElementById("canvas-container");
 const drawingCanvas = document.getElementById("drawing-canvas");
 const playButton = document.getElementById("play");
@@ -27,14 +28,13 @@ playButton.addEventListener("click", () => {
         const nickname = nicknameInput.value;
         if (nickname) {
             playerEntered = true;
-            nicknameContainer.style.display = "none";
+            overlay.style.display = "none"; // Hide the overlay
             canvasContainer.style.display = "block";
             nicknameInput.disabled = true; // Disable nickname input after entering
-            // Enable drawing and chat controls
-            enableControls();
+            enableControls(); // Enable drawing and chat controls
             // Send the nickname to the server and update the player list (you need to set up your server for this).
             // For testing purposes, you can add the nickname to the player list.
-            const playerItem = document.createElement("li");
+            const playerItem = document.createElement("div");
             playerItem.textContent = nickname;
             playerList.appendChild(playerItem);
         }
@@ -85,18 +85,16 @@ sendMessageButton.addEventListener("click", () => {
     if (playerEntered) {
         const message = messageInput.value;
         if (message) {
-            // Replace "Nickname" with the player's actual nickname in the message
             const formattedMessage = `${nicknameInput.value}: ${message}`;
-            // For demonstration, add the formatted message to the chat container.
             const messageElement = document.createElement("p");
             messageElement.textContent = formattedMessage;
-            messageElement.classList.add("chat-message"); // Apply styling to the chat message
             chatMessages.appendChild(messageElement);
-            messageInput.value = ''; // Clear the input field
+            messageInput.value = '';
+            // Scroll the chat to show the latest message
+            chatMessages.scrollTop = chatMessages.scrollHeight;
         }
     }
 });
-
 
 // Function to enable drawing and chat controls
 function enableControls() {
