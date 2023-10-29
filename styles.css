@@ -23,6 +23,7 @@ body {
 
 .food {
     background-color: #f00;
+    border: 1px solid #000;
 }
 
 #score {
