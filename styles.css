@@ -1,100 +1,18 @@
 body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    background-color: #f1f1f1;
-    justify-content: center;
-    align-items: center;
+    text-align: center;
 }
 
-.centered {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    margin-top: 10vh; /* Move it down by 10% of the viewport height */
+.hidden {
+    display: none;
 }
 
-.canvas-container {
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    background-color: #ffffff;
-    max-height: 70vh; /* Adjust the max-height to your preference */
-    overflow: auto;  /* Add scrolling for tools */
+#login, #lobby, #game {
+    margin: 20px auto;
+    width: 400px;
+    text-align: center;
 }
 
-.chat-container {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    width: 250px;
-    height: 300px;
-    background: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-}
-
-.chat-messages {
-    flex-grow: 1;
-    overflow-y: auto;
-}
-
-.chat-container h3 {
-    margin: 0;
-    color: #333333;
-    font-size: 1.2em;
-}
-
-.player-list-container {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 200px;
-    height: 300px;
-    background: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    padding: 10px;
-}
-
-.message-input-container {
-    display: flex;
-}
-
-input[type="text"] {
-    flex-grow: 1;
-    margin-right: 5px;
-}
-
-button {
-    background-color: #0074d9;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 5px 10px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-input[type="color"] {
-    margin: 5px;
-}
-
-.chat-message {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    padding: 5px;
-    margin: 5px;
-    border-radius: 5px;
+#start-button[disabled] {
+    background-color: lightgray;
+    cursor: not-allowed;
 }
