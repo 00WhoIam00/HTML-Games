@@ -1,6 +1,4 @@
 const gameContainer = document.querySelector('.game-container');
-const snake = document.getElementById('snake');
-const food = document.getElementById('food');
 const scoreElement = document.getElementById('score');
 
 let gridSize = 10;
@@ -21,14 +19,18 @@ function update() {
 function moveSnake() {
     let headX = snakeSegments[0].x + (direction === 'right' ? 1 : direction === 'left' ? -1 : 0);
     let headY = snakeSegments[0].y + (direction === 'down' ? 1 : direction === 'up' ? -1 : 0);
-    snakeSegments.unshift({ x: headX, y: headY });
 
+    // Check if the head collides with the food
     if (headX === foodX && headY === foodY) {
         score++;
         spawnFood();
-    } else {
-        snakeSegments.pop();
+        // Add a new segment to the snake's tail
+        snakeSegments.push({ x: headX, y: headY });
     }
+
+    // Move the snake
+    snakeSegments.unshift({ x: headX, y: headY });
+    snakeSegments.pop();
 }
 
 function render() {
