@@ -46,8 +46,11 @@ function render() {
     });
 
     // Render the food
+    const food = document.createElement('div');
+    food.className = 'food';
     food.style.gridColumn = foodX;
     food.style.gridRow = foodY;
+    gameContainer.appendChild(food);
 }
 
 function spawnFood() {
