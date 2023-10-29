@@ -1,31 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Multiplayer Drawing App</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-    <div class="nickname-container">
-        <label for="nickname">Enter your nickname:</label>
-        <input type="text" id="nickname" placeholder="Your Nickname">
-        <button id="play-button">Play</button>
+    <div id="nickname-container">
+        <input type="text" id="nickname" placeholder="Enter your nickname">
+        <button id="play">Play</button>
     </div>
-    <div class="canvas-container">
+    <div id="canvas-container" style="display: none;">
         <canvas id="drawing-canvas"></canvas>
     </div>
-    <div class="drawing-tools">
-        <button id="clear-button">Clear</button>
-        <button id="eraser-button">Eraser</button>
-        <button id="pencil-button">Pencil</button>
-        <input type="color" id="color-picker" value="#000000">
+    <div id="drawing-toolbar">
+        <button id="clear">Clear</button>
+        <button id="eraser">Eraser</button>
+        <button id="pencil">Pencil</button>
+        <input type="color" id="color">
     </div>
-    <div class="chat-container">
-        <div id="chat-log"></div>
-        <input type="text" id="chat-input" placeholder="Type your message">
-        <button id="send-button">Send</button>
-    </div>
-    <script src="script.js"></script>
 </body>
+<script src="script.js"></script>
 </html>
