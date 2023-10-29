@@ -4,25 +4,27 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-    <div id="background" class="background"></div>
-    <div id="nickname-container" class="nickname-container">
-        <h2>Enter your nickname</h2>
-        <input type="text" id="nickname" placeholder="Nickname">
-        <button id="play">Play</button>
+    <div id="overlay">
+        <div id="nickname-container" class="centered">
+            <h2>Enter your nickname</h2>
+            <input type="text" id="nickname" placeholder="Nickname">
+            <button id="play">Play</button>
+        </div>
     </div>
     <div id="canvas-container" class="canvas-container">
         <canvas id="drawing-canvas"></canvas>
     </div>
     <div id="chat-container" class="chat-container chat">
-        <div id="chat-messages" class="chat-messages"></div>
-        <div class="message-input-container">
+        <h3>Chat</h3>
+        <div id="chat-messages" class="scrolling-chat"></div>
+        <div id="chat-input">
             <input type="text" id="message-input" placeholder="Type your message" disabled>
             <button id="send-message" disabled>Send</button>
         </div>
     </div>
     <div id="player-list-container" class="player-list-container player-list">
         <h3>Player List</h3>
-        <ul id="player-list"></ul>
+        <div id="player-list" class="scrolling-list"></div>
     </div>
     <div id="drawing-toolbar" class="drawing-toolbar">
         <button id="clear">Clear</button>
