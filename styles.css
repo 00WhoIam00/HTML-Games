@@ -1,14 +1,15 @@
 body {
-    text-align: center;
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
 
 .centered {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: rgba(255, 255, 255, 0.9);
     padding: 20px;
     border-radius: 10px;
@@ -16,15 +17,32 @@ body {
 }
 
 #canvas-container {
-    margin-top: 20px;
+    flex-grow: 1; /* Expand to fill available space */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#drawing-toolbar {
-    position: fixed;
-    bottom: 10px;
+.chat {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 200px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+}
+
+.player-list {
+    position: absolute;
+    top: 10px;
     right: 10px;
-}
-
-canvas {
-    border: 1px solid #000;
+    width: 200px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 10px;
 }
