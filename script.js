@@ -17,10 +17,12 @@ let isEraser = false;
 // Event listeners
 playButton.addEventListener("click", () => {
     const nickname = nicknameInput.value;
-    nicknameContainer.style.display = "none";
-    canvasContainer.style.display = "block";
-    // Send the nickname to the server (you need to set up your server for this).
-    // For testing purposes, you can use console.log(nickname).
+    if (nickname) {
+        nicknameContainer.style.display = "none";
+        canvasContainer.style.display = "block";
+        // Send the nickname to the server (you need to set up your server for this).
+        // For testing purposes, you can use console.log(nickname).
+    }
 });
 
 clearButton.addEventListener("click", () => {
