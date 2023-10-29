@@ -1,6 +1,5 @@
 // Get DOM elements
 const nicknameContainer = document.getElementById("nickname-container");
-const overlay = document.getElementById("overlay");
 const canvasContainer = document.getElementById("canvas-container");
 const drawingCanvas = document.getElementById("drawing-canvas");
 const playButton = document.getElementById("play");
@@ -28,13 +27,14 @@ playButton.addEventListener("click", () => {
         const nickname = nicknameInput.value;
         if (nickname) {
             playerEntered = true;
-            overlay.style.display = "none"; // Hide the overlay
+            nicknameContainer.style.display = "none";
             canvasContainer.style.display = "block";
             nicknameInput.disabled = true; // Disable nickname input after entering
-            enableControls(); // Enable drawing and chat controls
+            // Enable drawing and chat controls
+            enableControls();
             // Send the nickname to the server and update the player list (you need to set up your server for this).
             // For testing purposes, you can add the nickname to the player list.
-            const playerItem = document.createElement("div");
+            const playerItem = document.createElement("li");
             playerItem.textContent = nickname;
             playerList.appendChild(playerItem);
         }
@@ -85,12 +85,13 @@ sendMessageButton.addEventListener("click", () => {
     if (playerEntered) {
         const message = messageInput.value;
         if (message) {
-            const formattedMessage = `${nicknameInput.value}: ${message}`;
+            // For demonstration, add the message to the chat container.
             const messageElement = document.createElement("p");
-            messageElement.textContent = formattedMessage;
+            messageElement.textContent = `${nicknameInput.value}: ${message}`;
+            messageElement.classList.add("chat-message"); // Apply styling to the chat message
             chatMessages.appendChild(messageElement);
-            messageInput.value = '';
-            // Scroll the chat to show the latest message
+            messageInput.value = ''; // Clear the input field
+            // Scroll to the latest message
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
     }
