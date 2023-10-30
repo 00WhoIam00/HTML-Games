@@ -28,10 +28,6 @@ function moveSnake() {
         spawnFood();
         // Add a new segment to the snake's tail
         snakeSegments.push({ x: headX, y: headY });
-        snakeSegments.push({ x: headX, y: headY });
-        snakeSegments.push({ x: headX, y: headY });
-        snakeSegments.push({ x: headX, y: headY });
-        snakeSegments.push({ x: headX, y: headY });
     }
 
     // Move the snake
