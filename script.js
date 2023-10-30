@@ -7,6 +7,7 @@ let foodX = 0;
 let foodY = 0;
 let direction = 'right';
 let score = 0;
+let foodValue = 1;
 
 function update() {
     moveSnake();
@@ -22,7 +23,8 @@ function moveSnake() {
 
     // Check if the head collides with the food
     if (headX === foodX && headY === foodY) {
-        score++;
+        score += foodValue;
+        foodValue *= 2;
         spawnFood();
         // Add a new segment to the snake's tail
         snakeSegments.push({ x: headX, y: headY });
@@ -85,6 +87,7 @@ function gameOver() {
     foodY = 0;
     direction = 'right';
     score = 0;
+    foodValue = 1;
     spawnFood();
 }
 
