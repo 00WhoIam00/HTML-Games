@@ -24,7 +24,7 @@ function moveSnake() {
     // Check if the head collides with the food
     if (headX === foodX && headY === foodY) {
         score += foodValue;
-        foodValue *= 2;
+        foodValue *= 5;
         spawnFood();
         // Add a new segment to the snake's tail
         snakeSegments.push({ x: headX, y: headY });
