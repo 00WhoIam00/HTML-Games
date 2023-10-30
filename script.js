@@ -21,24 +21,20 @@ function moveSnake() {
     let headX = snakeSegments[0].x + (direction === 'right' ? 1 : direction === 'left' ? -1 : 0);
     let headY = snakeSegments[0].y + (direction === 'down' ? 1 : direction === 'up' ? -1 : 0);
 
-    // Check if the head collides with the food
     if (headX === foodX && headY === foodY) {
         score += foodValue;
         foodValue *= 2;
         spawnFood();
-        // Add a new segment to the snake's tail
         snakeSegments.push({ x: headX, y: headY });
     }
 
-    // Move the snake
     snakeSegments.unshift({ x: headX, y: headY });
     snakeSegments.pop();
 }
 
 function render() {
-    gameContainer.innerHTML = ''; // Clear the game container
+    gameContainer.innerHTML = '';
 
-    // Render the snake
     snakeSegments.forEach(segment => {
         const snakeSegment = document.createElement('div');
         snakeSegment.className = 'snake';
@@ -47,7 +43,6 @@ function render() {
         gameContainer.appendChild(snakeSegment);
     });
 
-    // Render the food
     const food = document.createElement('div');
     food.className = 'food';
     food.style.gridColumn = foodX;
