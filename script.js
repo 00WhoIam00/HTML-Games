@@ -7,7 +7,7 @@ let foodX = 0;
 let foodY = 0;
 let direction = 'right';
 let score = 0;
-let foodValue = 5;
+let foodValue = 1;
 
 function update() {
     moveSnake();
@@ -27,6 +27,10 @@ function moveSnake() {
         foodValue *= 2;
         spawnFood();
         // Add a new segment to the snake's tail
+        snakeSegments.push({ x: headX, y: headY });
+        snakeSegments.push({ x: headX, y: headY });
+        snakeSegments.push({ x: headX, y: headY });
+        snakeSegments.push({ x: headX, y: headY });
         snakeSegments.push({ x: headX, y: headY });
     }
 
