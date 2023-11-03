@@ -4,7 +4,18 @@
     <link rel="stylesheet" type="text/css" href="styles.css" />
   </head>
   <body>
-    <div class="maze" id="maze"></div>
+    <div class="maze-container">
+      <div class="controls">
+        <button id="smallMaze">Small Maze</button>
+        <button id="mediumMaze">Medium Maze</button>
+        <button id="largeMaze">Large Maze</button>
+      </div>
+      <div class="maze" id="maze"></div>
+      <div class="counters">
+        <div class="counter">Time: <span id="timer">0</span> seconds</div>
+        <div class="counter">Steps: <span id="steps">0</span></div>
+      </div>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>
