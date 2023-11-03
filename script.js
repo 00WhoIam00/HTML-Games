@@ -1,115 +1,70 @@
-const gameContainer = document.querySelector('.game-container');
-const scoreElement = document.getElementById('score');
+const maze = document.getElementById('maze');
+const rows = 10;
+const cols = 10;
+const cellSize = 40;
 
-let gridSize = 10;
-let snakeSegments = [{ x: 2, y: 2 }];
-let foodX = 0;
-let foodY = 0;
-let direction = 'right';
-let score = 0;
-let foodValue = 1;
+const mazeGrid = Array(rows).fill(null).map(() =>
+  Array(cols).fill('wall')
+);
 
-function update() {
-    moveSnake();
-    checkCollision();
-    render();
-    scoreElement.innerHTML = 'Score: ' + score;
-    setTimeout(update, 100);
-}
+function generateMaze() {
+  const stack = [];
+  const directions = [[0, 2], [2, 0], [0, -2], [-2, 0]];
 
-function moveSnake() {
-    let headX = snakeSegments[0].x + (direction === 'right' ? 1 : direction === 'left' ? -1 : 0);
-    let headY = snakeSegments[0].y + (direction === 'down' ? 1 : direction === 'up' ? -1 : 0);
+  function isValid(x, y) {
+    return x >= 0 && x < cols && y >= 0 && y < rows && mazeGrid[y][x] === 'wall';
+  }
 
-    if (headX === foodX && headY === foodY) {
-        score += foodValue;
-        foodValue *= 2;
-        spawnFood();
-        snakeSegments.push({ x: headX, y: headY });
-    }
+  function carve(x, y) {
+    mazeGrid[y][x] = 'path';
+  }
 
-    snakeSegments.unshift({ x: headX, y: headY });
-    snakeSegments.pop();
-}
+  function generate(x, y) {
+    carve(x, y);
+    stack.push([x, y]);
 
-function render() {
-    gameContainer.innerHTML = '';
+    while (stack.length > 0) {
+      const [cx, cy] = stack[stack.length - 1];
+      const neighbors = [];
 
-    snakeSegments.forEach(segment => {
-        const snakeSegment = document.createElement('div');
-        snakeSegment.className = 'snake';
-        snakeSegment.style.gridColumn = segment.x;
-        snakeSegment.style.gridRow = segment.y;
-        gameContainer.appendChild(snakeSegment);
-    });
+      for (const [dx, dy] of directions) {
+        const nx = cx + dx;
+        const ny = cy + dy;
 
-    const food = document.createElement('div');
-    food.className = 'food';
-    food.style.gridColumn = foodX;
-    food.style.gridRow = foodY;
-    gameContainer.appendChild(food);
-}
-
-function spawnFood() {
-    foodX = Math.floor(Math.random() * 30) + 1;
-    foodY = Math.floor(Math.random() * 30) + 1;
-}
-
-function checkCollision() {
-    const headX = snakeSegments[0].x;
-    const headY = snakeSegments[0].y;
-
-    if (
-        headX <= 0 ||
-        headX > 30 ||
-        headY <= 0 ||
-        headY > 30
-    ) {
-        gameOver();
-    }
-
-    for (let i = 1; i < snakeSegments.length; i++) {
-        if (headX === snakeSegments[i].x && headY === snakeSegments[i].y) {
-            gameOver();
+        if (isValid(nx, ny)) {
+          neighbors.push([nx, ny]);
         }
+      }
+
+      if (neighbors.length === 0) {
+        stack.pop();
+      } else {
+        const [nx, ny] = neighbors[Math.floor(Math.random() * neighbors.length)];
+        carve(nx, ny);
+        carve(cx + (nx - cx) / 2, cy + (ny - cy) / 2);
+        stack.push([nx, ny]);
+      }
     }
+  }
+
+  generate(0, 0);
+  mazeGrid[0][1] = 'start';
+  mazeGrid[rows - 1][cols - 2] = 'end';
+
+  renderMaze();
 }
 
-function gameOver() {
-    alert('Game Over! Score: ' + score);
-    snakeSegments = [{ x: 2, y: 2 }];
-    foodX = 0;
-    foodY = 0;
-    direction = 'right';
-    score = 0;
-    foodValue = 1;
-    spawnFood();
+function renderMaze() {
+  maze.innerHTML = '';
+
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < cols; x++) {
+      const cell = document.createElement('div');
+      cell.classList.add('cell', mazeGrid[y][x]);
+
+      maze.appendChild(cell);
+    }
+  }
 }
 
-document.addEventListener('keydown', (event) => {
-    switch (event.key) {
-        case 'ArrowUp':
-            if (direction !== 'down') {
-                direction = 'up';
-            }
-            break;
-        case 'ArrowDown':
-            if (direction !== 'up') {
-                direction = 'down';
-            }
-            break;
-        case 'ArrowLeft':
-            if (direction !== 'right') {
-                direction = 'left';
-            }
-            break;
-        case 'ArrowRight':
-            if (direction !== 'left') {
-                direction = 'right';
-            }
-            break;
-    }
-});
-
-spawnFood();
-update();
+generateMaze();
