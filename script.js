@@ -14,14 +14,14 @@ function generateMaze() {
   for (let row = 0; row < mazeSize; row++) {
     let rowData = "";
     for (let col = 0; col < mazeSize; col++) {
-      if (row === 0 || row === mazeSize - 1 || col === 0 || col === mazeSize - 1 || (row % 2 === 0 && col % 2 === 0)) {
-        rowData += "#"; // Add walls
-      } else {
-        rowData += " ";
-      }
+      rowData += "#";
     }
     mazeData.push(rowData);
   }
+  // Add a player at the start position
+  mazeData[1] = mazeData[1].substring(0, 1) + "P" + mazeData[1].substring(2);
+  // Add an exit at the end position
+  mazeData[mazeSize - 2] = mazeData[mazeSize - 2].substring(0, mazeSize - 2) + "E" + mazeData[mazeSize - 2].substring(mazeSize - 1);
   renderMaze();
 }
 
@@ -31,7 +31,7 @@ function renderMaze() {
   for (let row = 0; row < mazeData.length; row++) {
     for (let col = 0; col < mazeData[row].length; col++) {
       const cell = document.createElement("div");
-      cell.className = mazeData[row][col] === "#" ? "wall" : "";
+      cell.className = mazeData[row][col] === "#" ? "wall" : mazeData[row][col] === "P" ? "player" : "";
       cell.style.left = col * 30 + "px";
       cell.style.top = row * 30 + "px";
       maze.appendChild(cell);
