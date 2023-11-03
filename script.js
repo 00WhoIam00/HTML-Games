@@ -7,47 +7,12 @@ const mazeGrid = Array(rows).fill(null).map(() =>
   Array(cols).fill('wall')
 );
 
+let playerX = 0;
+let playerY = 0;
+
 function generateMaze() {
-  const stack = [];
-  const directions = [[0, 2], [2, 0], [0, -2], [-2, 0]];
+  // ... (Previous maze generation code)
 
-  function isValid(x, y) {
-    return x >= 0 && x < cols && y >= 0 && y < rows && mazeGrid[y][x] === 'wall';
-  }
-
-  function carve(x, y) {
-    mazeGrid[y][x] = 'path';
-  }
-
-  function generate(x, y) {
-    carve(x, y);
-    stack.push([x, y]);
-
-    while (stack.length > 0) {
-      const [cx, cy] = stack[stack.length - 1];
-      const neighbors = [];
-
-      for (const [dx, dy] of directions) {
-        const nx = cx + dx;
-        const ny = cy + dy;
-
-        if (isValid(nx, ny)) {
-          neighbors.push([nx, ny]);
-        }
-      }
-
-      if (neighbors.length === 0) {
-        stack.pop();
-      } else {
-        const [nx, ny] = neighbors[Math.floor(Math.random() * neighbors.length)];
-        carve(nx, ny);
-        carve(cx + (nx - cx) / 2, cy + (ny - cy) / 2);
-        stack.push([nx, ny]);
-      }
-    }
-  }
-
-  generate(0, 0);
   mazeGrid[0][1] = 'start';
   mazeGrid[rows - 1][cols - 2] = 'end';
 
@@ -67,4 +32,52 @@ function renderMaze() {
   }
 }
 
+function movePlayer(dx, dy) {
+  const newX = playerX + dx;
+  const newY = playerY + dy;
+
+  if (
+    newX >= 0 &&
+    newX < cols &&
+    newY >= 0 &&
+    newY < rows &&
+    mazeGrid[newY][newX] !== 'wall'
+  ) {
+    mazeGrid[playerY][playerX] = 'path';
+    playerX = newX;
+    playerY = newY;
+    mazeGrid[playerY][playerX] = 'visited';
+    renderMaze();
+  }
+
+  if (playerX === cols - 2 && playerY === rows - 1) {
+    alert('You have reached the end of the maze!');
+  }
+}
+
 generateMaze();
+
+document.addEventListener('keydown', (e) => {
+  switch (e.key) {
+    case 'ArrowUp':
+    case 'w':
+    case 'W':
+      movePlayer(0, -1);
+      break;
+    case 'ArrowDown':
+    case 's':
+    case 'S':
+      movePlayer(0, 1);
+      break;
+    case 'ArrowLeft':
+    case 'a':
+    case 'A':
+      movePlayer(-1, 0);
+      break;
+    case 'ArrowRight':
+    case 'd':
+    case 'D':
+      movePlayer(1, 0);
+      break;
+  }
+});
