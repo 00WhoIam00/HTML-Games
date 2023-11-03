@@ -4,30 +4,32 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #f0f0f0;
+    background-color: #222;
 }
 
-.game-container {
-    position: relative;
-    width: 300px;
-    height: 300px;
-    border: 2px solid #000;
+#maze {
     display: grid;
-    grid-template-columns: repeat(30, 10px);
-    grid-template-rows: repeat(30, 10px);
+    grid-template-columns: repeat(10, 40px);
+    grid-template-rows: repeat(10, 40px);
+    gap: 2px;
+    border: 2px solid #fff;
 }
 
-.snake {
-    background-color: #00f;
+.cell {
+    width: 40px;
+    height: 40px;
+    background-color: #222;
+    border: 2px solid #fff;
 }
-
-.food {
-    background-color: #f00;
-    border: 1px solid #000;
+.start {
+    background-color: green;
 }
-
-#score {
-    text-align: center;
-    font-size: 20px;
-    font-weight: bold;
+.end {
+    background-color: red;
+}
+.wall {
+    background-color: #000;
+}
+.visited {
+    background-color: #777;
 }
