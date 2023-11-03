@@ -3,81 +3,75 @@ const rows = 10;
 const cols = 10;
 const cellSize = 40;
 
-const mazeGrid = Array(rows).fill(null).map(() =>
-  Array(cols).fill('wall')
-);
+const mazeGrid = [
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 0, 1, 0, 0, 0, 1, 0, 0, 1],
+    [1, 0, 1, 0, 1, 0, 1, 0, 1, 1],
+    [1, 0, 0, 0, 1, 0, 0, 0, 0, 1],
+    [1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+    [1, 1, 1, 1, 1, 1, 0, 1, 0, 1],
+    [1, 0, 0, 0, 0, 1, 0, 1, 0, 1],
+    [1, 0, 1, 1, 1, 1, 1, 1, 0, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+];
 
-let playerX = 0;
-let playerY = 0;
+const player = {
+    x: 1,
+    y: 1
+};
 
 function generateMaze() {
-  // ... (Previous maze generation code)
+    maze.innerHTML = '';
 
-  mazeGrid[0][1] = 'start';
-  mazeGrid[rows - 1][cols - 2] = 'end';
+    for (let y = 0; y < rows; y++) {
+        for (let x = 0; x < cols; x++) {
+            const cell = document.createElement('div');
+            cell.classList.add('cell');
 
-  renderMaze();
-}
+            if (mazeGrid[y][x] === 1) {
+                cell.classList.add('wall');
+            }
 
-function renderMaze() {
-  maze.innerHTML = '';
+            if (x === player.x && y === player.y) {
+                cell.classList.add('player');
+            }
 
-  for (let y = 0; y < rows; y++) {
-    for (let x = 0; x < cols; x++) {
-      const cell = document.createElement('div');
-      cell.classList.add('cell', mazeGrid[y][x]);
-
-      maze.appendChild(cell);
+            maze.appendChild(cell);
+        }
     }
-  }
 }
 
 function movePlayer(dx, dy) {
-  const newX = playerX + dx;
-  const newY = playerY + dy;
+    const newX = player.x + dx;
+    const newY = player.y + dy;
 
-  if (
-    newX >= 0 &&
-    newX < cols &&
-    newY >= 0 &&
-    newY < rows &&
-    mazeGrid[newY][newX] !== 'wall'
-  ) {
-    mazeGrid[playerY][playerX] = 'path';
-    playerX = newX;
-    playerY = newY;
-    mazeGrid[playerY][playerX] = 'visited';
-    renderMaze();
-  }
+    if (mazeGrid[newY][newX] === 0) {
+        player.x = newX;
+        player.y = newY;
+        generateMaze();
+    }
 
-  if (playerX === cols - 2 && playerY === rows - 1) {
-    alert('You have reached the end of the maze!');
-  }
+    if (player.x === cols - 2 && player.y === rows - 2) {
+        alert('Congratulations! You reached the end of the maze.');
+    }
 }
 
 generateMaze();
 
 document.addEventListener('keydown', (e) => {
-  switch (e.key) {
-    case 'ArrowUp':
-    case 'w':
-    case 'W':
-      movePlayer(0, -1);
-      break;
-    case 'ArrowDown':
-    case 's':
-    case 'S':
-      movePlayer(0, 1);
-      break;
-    case 'ArrowLeft':
-    case 'a':
-    case 'A':
-      movePlayer(-1, 0);
-      break;
-    case 'ArrowRight':
-    case 'd':
-    case 'D':
-      movePlayer(1, 0);
-      break;
-  }
+    switch (e.key) {
+        case 'ArrowUp':
+            movePlayer(0, -1);
+            break;
+        case 'ArrowDown':
+            movePlayer(0, 1);
+            break;
+        case 'ArrowLeft':
+            movePlayer(-1, 0);
+            break;
+        case 'ArrowRight':
+            movePlayer(1, 0);
+            break;
+    }
 });
