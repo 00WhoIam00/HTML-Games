@@ -4,25 +4,64 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+}
+
+.maze-container {
+  background-color: #ffffff;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+.controls {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 5px;
+  font-size: 16px;
+  background-color: #0074d9;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
 }
 
 .maze {
   width: 300px;
   height: 300px;
-  border: 2px solid black;
+  border: 2px solid #000;
   position: relative;
 }
 
 .wall {
-  background-color: black;
+  background-color: #333;
   width: 30px;
   height: 30px;
   position: absolute;
 }
 
 .player {
-  background-color: red;
+  background-color: #ff5733;
   width: 30px;
   height: 30px;
   position: absolute;
 }
+
+.counters {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.counter {
+  font-size: 18px;
+  margin: 5px;
+}
+
