@@ -1,11 +1,8 @@
 const body = document.body;
 
 function getRandomColor() {
-    // Generate a random number (0 or 1) to represent black or white
-    const randomNum = Math.round(Math.random());
-
     // Return either the brightest white or the blackest black
-    return randomNum === 0 ? '#000000' : '#FFFFFF';
+    return Math.round(Math.random()) === 0 ? '#000000' : '#FFFFFF';
 }
 
 function switchColor() {
