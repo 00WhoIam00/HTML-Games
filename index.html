@@ -4,14 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>Simple Chat</title>
+    <title>Real-time Chat</title>
 </head>
 <body>
-    <div class="chat-container">
-        <div class="chat-box" id="chatBox"></div>
-        <input type="text" id="messageInput" placeholder="Type your message...">
+    <div class="registration-container">
+        <label for="nickname">Choose your nickname:</label>
+        <input type="text" id="nickname" placeholder="Enter your nickname">
+        <button onclick="register()">Register</button>
+    </div>
+
+    <div class="chat-container" id="chatContainer" style="display: none;">
+        <div id="chat"></div>
+        <input type="text" id="messageInput" placeholder="Type your message">
         <button onclick="sendMessage()">Send</button>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
