@@ -1,28 +1,30 @@
-// Array to store chat messages
-let messages = [];
+let nickname;
+let chatContainer = document.getElementById('chatContainer');
+let chat = document.getElementById('chat');
+let messageInput = document.getElementById('messageInput');
 
-// Function to display messages in the chat box
-function displayMessages() {
-    const chatBox = document.getElementById('chatBox');
-    chatBox.innerHTML = messages.map(msg => `<p>${msg}</p>`).join('');
+function register() {
+    nickname = document.getElementById('nickname').value;
+    if (nickname.trim() !== "") {
+        document.querySelector('.registration-container').style.display = 'none';
+        chatContainer.style.display = 'block';
+        appendMessage('System', `${nickname} has joined the chat.`);
+    } else {
+        alert('Please enter a valid nickname.');
+    }
 }
 
-// Function to send a new message
 function sendMessage() {
-    const messageInput = document.getElementById('messageInput');
     const message = messageInput.value.trim();
-
-    if (message !== '') {
-        // Add the new message to the array
-        messages.push(message);
-
-        // Display the updated messages
-        displayMessages();
-
-        // Clear the input field
+    if (message !== "") {
+        appendMessage(nickname, message);
         messageInput.value = '';
     }
 }
 
-// Initial display of messages
-displayMessages();
+function appendMessage(sender, message) {
+    const messageElement = document.createElement('div');
+    messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
+    chat.appendChild(messageElement);
+    chat.scrollTop = chat.scrollHeight; // Auto-scroll to the bottom
+}
